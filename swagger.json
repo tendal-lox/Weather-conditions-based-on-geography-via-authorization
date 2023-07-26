@@ -1,0 +1,72 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Testing my api",
+        "description": "Testing the express swagger API",
+        "version": "1.0.0"
+    },
+    "schemes": ["https"],
+    "consumes": ["application/json"],
+    "produces": ["application/json"],
+    "host": "localhost",
+    "basePath": "/docs",
+    "components": {
+        "securitySchemes": {
+            "ApiKeyAuth": {
+                "type": "apiKey",
+                "name": "athorization",
+                "in": "header"
+              }
+        }
+    },
+    "security": [
+        {
+            "ApiKeyAuth": []
+        }
+    ],
+    "paths": {
+        "/insertOldMembers": {
+            "get": {
+                "description": "Insert all old members if they are not in the dataBase"
+            },
+            "responses": {
+                "200": {
+                    "description":"Should return boolean"
+                }
+            }
+        },
+        "/signIn": {
+            "post": {
+                "requestBody": {
+                    "content": {
+                        "application/x-www-form-urlencoded": {
+                            "schema": {
+                                "type": "object",
+                                "properties": {
+                                    "name": {"type": "string"},
+                                    "userName": {"type": "string"},
+                                    "email": {"type": "string"}
+                                }
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "Should return email object"
+                    }
+                }
+            }
+        },
+        "/weatherStatus": {
+            "get": {
+                "description": "get users weather via its location when its authorized",
+                "responses": {
+                    "200": {
+                        "description": "Should return an object"
+                    }
+                }
+            }
+        }
+    }
+}
